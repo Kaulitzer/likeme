@@ -61,7 +61,7 @@ app.put('/posts/like/:id', async (req, res) => {
     console.log(`Like registrado con éxito para el post ID: ${postId}, Likes actualizados: ${updatedLikes}`);
     res.json({ message: 'Like registrado con éxito', postId, likes: updatedLikes });
   } catch (err) {
-    console.error(err);
+    console.error('Error al dar like:', err);
     res.status(500).send('Error al registrar el like');
   }
 });
@@ -74,7 +74,7 @@ app.delete('/posts/:id', async (req, res) => {
     await pool.query('DELETE FROM posts WHERE id = $1', [postId]);
     res.json({ message: 'Post eliminado con éxito', postId });
   } catch (err) {
-    console.error(err);
+    console.error('Error al eliminar el post:', err);
     res.status(500).send('Error al eliminar el post');
   }
 });
